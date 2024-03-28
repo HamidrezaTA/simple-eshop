@@ -12,9 +12,6 @@ namespace api.Entities
         public long CategoryId { get; set; }
         public required Category Category { get; set; }
 
-        public long? BrandId { get; set; }
-        public Brand? Brand { get; set; }
-
         public ICollection<ProductSpecification>? ProductSpecifications { get; set; }
         public ICollection<StoredFile>? Images { get; set; }
 
