@@ -11,6 +11,13 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(options => options.AllowAnyOrigin()
+                                               .AllowAnyMethod()
+                                               .AllowAnyHeader());
+});
+
 var jwtConfigurations = builder.Configuration.GetSection("JWT").Get<JWTConfigurations>();
 builder.Services.AddAuthentication(options =>
 {
@@ -95,6 +102,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthentication();
 
